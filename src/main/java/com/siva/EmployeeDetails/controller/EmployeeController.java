@@ -40,6 +40,13 @@ public class EmployeeController {
 	@Autowired
 	private EmployeeService employeeService;
 	
+	
+	
+	
+	@GetMapping("/hello")
+	public String hello() {
+		return "welcome to my world";
+	}
 
 	@PostMapping("/save")
 	public ResponseEntity<Employee> addEmployee(@RequestBody Employee employee) {
