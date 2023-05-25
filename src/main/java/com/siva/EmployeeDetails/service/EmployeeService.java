@@ -8,7 +8,7 @@ import com.siva.EmployeeDetails.entity.Employee;
 
 public interface EmployeeService {
 
-	public Employee addEmployee(Employee employee);
+		public Employee addEmployee(Employee employee);
 
 		public List<Employee> findByisActive(Boolean isActive);
 
@@ -32,6 +32,10 @@ public interface EmployeeService {
 		public List<Employee> listAll();
 
 		public List<Employee> getTheListEmployees();
+
+
+		
+
 
 
 

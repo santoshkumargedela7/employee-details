@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lowagie.text.DocumentException;
 import com.siva.EmployeeDetails.entity.Employee;
 import com.siva.EmployeeDetails.service.EmployeeService;
@@ -45,7 +46,29 @@ public class EmployeeController {
 	public String hello() {
 		return "welcome to my world";
 	}
-
+		
+	
+	@GetMapping("/json")
+	public ResponseEntity<String> convertMapToJson() {
+		HashMap<String, Object> studentHashmap = new HashMap<String,Object>();
+		studentHashmap.put("studentId", 1);
+        studentHashmap.put("studentFirstName", "AAA");
+        studentHashmap.put("studentLastName", "BBB");
+        studentHashmap.put("studentStream", "PCMB");
+        studentHashmap.put("studentMarks", "480");
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+			String json = mapper.writeValueAsString(studentHashmap);
+			System.out.println("StudentsData:---"+json);
+			return new ResponseEntity<String>(json,HttpStatus.OK);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+        return null;
+	}
+	
+	
+	
 	@PostMapping("/save")
 	public ResponseEntity<Employee> addEmployee(@RequestBody Employee employee) {
 		try {
@@ -92,12 +115,13 @@ public class EmployeeController {
 		return null;
 
 	}
+
 	@PostMapping("/data")
-	public ResponseEntity<Map<String,String>> getData(@RequestBody Map<String,String > input){
-		System.out.println("Input data -->"+input);
-		Map<String, String > response = new HashMap<>();
+	public ResponseEntity<Map<String, String>> getData(@RequestBody Map<String, String> input) {
+		System.out.println("Input data -->" + input);
+		Map<String, String> response = new HashMap<>();
 		response.put("message", "input received");
-		return new ResponseEntity<>(response,HttpStatus.OK);
+		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
 
 	@GetMapping("/users/export/pdf")
@@ -199,8 +223,5 @@ public class EmployeeController {
 		System.out.println("Hello");
 		return "Hi welcome to this world";
 	}
-	
-	
-	
-	
+
 }

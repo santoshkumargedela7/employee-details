@@ -9,7 +9,6 @@ import com.siva.EmployeeDetails.entity.Employee;
 
 public interface EmployeeRepository extends JpaRepository<Employee, Long>{
 		
-	List<Employee> findByisActive(Boolean isActive);
 	
 	List<Employee> findByfirstName(String firstName);
 	
@@ -17,6 +16,9 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long>{
 	List<Employee> findByAge(int age);
 
 	List<Employee> findBylastName(String lastName);
+
+
+	List<Employee> findByisActive(Boolean isActive);
 
 
 
